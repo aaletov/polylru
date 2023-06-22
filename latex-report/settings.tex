@@ -1,0 +1,98 @@
+\documentclass[a4paper,12pt]{extarticle}
+\usepackage{cmap}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[T2B]{fontenc}
+\usepackage[T2C]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{here}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+% многостраничные таблицы
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{csvsimple}
+\usepackage{caption}
+\usepackage{pdfpages}
+% captionof
+% toprule bottomrule etc.
+\usepackage{booktabs}
+% side-by-side images
+\usepackage{caption}
+\usepackage{subcaption}
+
+\renewcommand{\lstlistingname}{Программа} % заголовок листингов кода
+
+\bibliographystyle{ugost2008ls}
+
+\usepackage{listings}
+
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=shadowbox,
+  rulesepcolor=\color{gray},
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\ttfamily},
+  numbers=none,
+  numberstyle=\color{black},
+  keywordstyle=\color{blue},
+  commentstyle=\color{green},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  xleftmargin=2em,
+  framexleftmargin=2em,
+  numbers=left,
+  firstnumber=1,
+  captionpos=b,
+  extendedchars=\true,
+  keepspaces=true,
+  inputpath=listings,                     % директория с листингами
+}
+
+
+\usepackage[left=2cm,right=2cm,
+top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+%% Нумерация картинок по секциям
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+%%Точки нумерации заголовков
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+\usepackage[dotinlabels]{titletoc}
+
+%% Оформления подписи рисунка
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}}
+\captionsetup[figure]{labelsep = period, justification=centering}
+
+%% Подпись таблицы
+\addto\captionsrussian{\renewcommand{\tablename}{Таблица}}
+\captionsetup[table]{labelsep = period, justification=centering}
+
+%% Подпись таблицы
+%\DeclareCaptionFormat{hfillstart}{\hfill#1#2#3\par}
+%\captionsetup[table]{format=hfillstart,labelsep=newline,justification=centering,skip=-10pt,textfont=bf}
+
+%% Путь к каталогу с рисунками
+\graphicspath{{fig/}}
+
+%% Внесение titlepage в учёт счётчика страниц
+\makeatletter
+\renewenvironment{titlepage} {
+ \thispagestyle{empty}
+}
+\makeatother
