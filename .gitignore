@@ -1056,3 +1056,9 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
+
+# Testing 
+
+reports/
+*_include.cmake
+*_tests.cmake
