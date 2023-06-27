@@ -1,10 +1,12 @@
 \documentclass[a4paper,12pt]{extarticle}
-\usepackage{cmap}
-\usepackage[utf8]{inputenc}
-\usepackage[T2A]{fontenc}
-\usepackage[T2B]{fontenc}
-\usepackage[T2C]{fontenc}
+% \usepackage{cmap}
+% \usepackage[utf8]{inputenc}
+% \usepackage[T2A]{fontenc}
+% \usepackage[T2B]{fontenc}
+% \usepackage[T2C]{fontenc}
 \usepackage[russian]{babel}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
 \usepackage{hyperref}
 \usepackage{indentfirst}
 \usepackage{listings}
@@ -27,9 +29,16 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
-\renewcommand{\lstlistingname}{Программа} % заголовок листингов кода
+% biblio
+\usepackage{csquotes}
+\usepackage[
+    backend=biber, 
+    sorting=nyt,
+    bibstyle=gost-authoryear,
+    citestyle=gost-authoryear
+]{biblatex}
 
-\bibliographystyle{ugost2008ls}
+\renewcommand{\lstlistingname}{Программа} % заголовок листингов кода
 
 \usepackage{listings}
 
