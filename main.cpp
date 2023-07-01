@@ -3,6 +3,6 @@
 #include "lib/src/lru/lru.hpp"
 
 int main() {
-	const char* hw = "Хуй!";
+	const char* hw = "Манера крутит мир!";
 	std::cout << hw << "\n";
 }
