@@ -48,6 +48,7 @@ def main(argv):
             if os.path.splitext(f)[1] != ".xml":
                 continue
             desc = get_description(f)
+            desc = desc.replace("_", r"\_")
             descs.append(desc)
 
     latex = itemize(descs)

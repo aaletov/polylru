@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 cd ./latex-report/
 xelatex report.tex
 biber report
