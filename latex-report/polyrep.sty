@@ -1,37 +1,34 @@
-\documentclass[a4paper,12pt]{extarticle}
-% \usepackage{cmap}
-% \usepackage[utf8]{inputenc}
-% \usepackage[T2A]{fontenc}
-% \usepackage[T2B]{fontenc}
-% \usepackage[T2C]{fontenc}
-\usepackage[russian]{babel}
-\usepackage{fontspec}
-\setmainfont{Times New Roman}
-\usepackage{hyperref}
-\usepackage{indentfirst}
-\usepackage{listings}
-\usepackage{xcolor}
-\usepackage{here}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{graphicx}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{polyrep}
+\RequirePackage[russian]{babel}
+\RequirePackage{fontspec}
+\RequirePackage{hyperref}
+\RequirePackage{indentfirst}
+\RequirePackage{listings}
+% \RequirePackage{xcolor}
+\RequirePackage{here}
+\RequirePackage{array}
+\RequirePackage{multirow}
+\RequirePackage{graphicx}
 % многостраничные таблицы
-\usepackage{longtable}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{csvsimple}
-\usepackage{caption}
-\usepackage{pdfpages}
+\RequirePackage{longtable}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{csvsimple}
+\RequirePackage{caption}
+\RequirePackage{pdfpages}
 % captionof
 % toprule bottomrule etc.
-\usepackage{booktabs}
+\RequirePackage{booktabs}
 % side-by-side images
-\usepackage{caption}
-\usepackage{subcaption}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+
+\setmainfont{Times New Roman}
 
 % biblio
-\usepackage{csquotes}
-\usepackage[
+\RequirePackage{csquotes}
+\RequirePackage[
     backend=biber, 
     sorting=nyt,
     bibstyle=gost-authoryear,
@@ -40,7 +37,7 @@
 
 \renewcommand{\lstlistingname}{Программа} % заголовок листингов кода
 
-\usepackage{listings}
+\RequirePackage{listings}
 
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
@@ -71,18 +68,18 @@
 }
 
 
-\usepackage[left=2cm,right=2cm,
+\RequirePackage[left=2cm,right=2cm,
 top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 
 %% Нумерация картинок по секциям
-\usepackage{chngcntr}
+\RequirePackage{chngcntr}
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
 
 %%Точки нумерации заголовков
-\usepackage{titlesec}
+\RequirePackage{titlesec}
 \titlelabel{\thetitle.\quad}
-\usepackage[dotinlabels]{titletoc}
+\RequirePackage[dotinlabels]{titletoc}
 
 %% Оформления подписи рисунка
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}}
@@ -104,4 +101,5 @@ top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \renewenvironment{titlepage} {
  \thispagestyle{empty}
 }
+
 \makeatother

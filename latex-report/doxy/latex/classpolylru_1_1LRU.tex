@@ -1,0 +1,105 @@
+\hypertarget{classpolylru_1_1LRU}{}\doxysection{Шаблон класса polylru\+::LRU$<$ Key, Value $>$}
+\label{classpolylru_1_1LRU}\index{polylru::LRU$<$ Key, Value $>$@{polylru::LRU$<$ Key, Value $>$}}
+
+
+Данный шаблон класса реализует кэш с методом вытесенения \mbox{\hyperlink{classpolylru_1_1LRU}{LRU}}(Least recently used).  
+
+
+
+
+{\ttfamily \#include $<$lru.\+hpp$>$}
+
+\doxysubsection*{Открытые типы}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpolylru_1_1LRU_a3ea5e965729f5bdeaba098b116442fd7}\label{classpolylru_1_1LRU_a3ea5e965729f5bdeaba098b116442fd7}} 
+typedef std\+::pair$<$ Key, Value $>$ {\bfseries value\+\_\+type}
+\item 
+\mbox{\Hypertarget{classpolylru_1_1LRU_ac5a37feda047bc82492d4138aa1f53fe}\label{classpolylru_1_1LRU_ac5a37feda047bc82492d4138aa1f53fe}} 
+typedef Key {\bfseries key\+\_\+type}
+\item 
+\mbox{\Hypertarget{classpolylru_1_1LRU_a84739a340a88d8d6d140d7ed9979be88}\label{classpolylru_1_1LRU_a84739a340a88d8d6d140d7ed9979be88}} 
+typedef Value {\bfseries mapped\+\_\+type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpolylru_1_1LRU_ad0925b9af507f3f94a5994e8767cf364}\label{classpolylru_1_1LRU_ad0925b9af507f3f94a5994e8767cf364}} 
+{\bfseries LRU} (size\+\_\+t \mbox{\hyperlink{classpolylru_1_1LRU_a9f41605f0f04632a8998b831450e5f8f}{capacity}})
+\item 
+Value \mbox{\hyperlink{classpolylru_1_1LRU_a22b8cf857cd06e0c265a2eb9e6b5dc2b}{get}} (Key key)
+\begin{DoxyCompactList}\small\item\em Возвращает значение, установленное для указанного ключа. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpolylru_1_1LRU_aef41a485a7fabaed42f1bd3819529d43}{set}} (Key key, Value value)
+\begin{DoxyCompactList}\small\item\em Устанавлияет в кэше значение с указанным ключом. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classpolylru_1_1LRU_aabd3b11ceb299a3f282a00428d215994}\label{classpolylru_1_1LRU_aabd3b11ceb299a3f282a00428d215994}} 
+bool \mbox{\hyperlink{classpolylru_1_1LRU_aabd3b11ceb299a3f282a00428d215994}{contains}} (Key key) const noexcept
+\begin{DoxyCompactList}\small\item\em Проверяет, сохранён ли в кэше элемент с указанным ключом. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classpolylru_1_1LRU_ad5f99519f5533136ffb63245832bae15}{size}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Возвращает текущее количество элементов в кэше. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classpolylru_1_1LRU_a9f41605f0f04632a8998b831450e5f8f}\label{classpolylru_1_1LRU_a9f41605f0f04632a8998b831450e5f8f}} 
+size\+\_\+t \mbox{\hyperlink{classpolylru_1_1LRU_a9f41605f0f04632a8998b831450e5f8f}{capacity}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Возвращает текущую ёмкость кэша. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpolylru_1_1LRU_adf74956e314cf45970cdcd6e7e6ed369}{resize}} (size\+\_\+t new\+\_\+cap)
+\begin{DoxyCompactList}\small\item\em Изменяет ёмкость кэша. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+\subsubsection*{template$<$typename Key, typename Value$>$\newline
+class polylru\+::\+LRU$<$ Key, Value $>$}
+
+Данный шаблон класса реализует кэш с методом вытесенения \mbox{\hyperlink{classpolylru_1_1LRU}{LRU}}(Least recently used). 
+
+Элементы хранятся ассоциативно, в формате ключ-\/значение, ёмкость кэша задаётся при создании объекта. Размером кэша считается количество элементов, сохранённое в контейнере. Если размер кэша равен его ёмкости, он считается {\bfseries{заполненным}}. Возраст элементов определяется количеством обращений к кэшу, в течение которого они не были использованы. Добавление элемента с новым ключом в заполненный кэш влечёт за собой вытесенение из кэша по методу \mbox{\hyperlink{classpolylru_1_1LRU}{LRU}}, самый старый элемент удаляется.
+
+Функция \mbox{\hyperlink{classpolylru_1_1LRU_adf74956e314cf45970cdcd6e7e6ed369}{resize(size\+\_\+t)}} позволяет динамически изменить размер контейнера. 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classpolylru_1_1LRU_a22b8cf857cd06e0c265a2eb9e6b5dc2b}\label{classpolylru_1_1LRU_a22b8cf857cd06e0c265a2eb9e6b5dc2b}} 
+\index{polylru::LRU$<$ Key, Value $>$@{polylru::LRU$<$ Key, Value $>$}!get@{get}}
+\index{get@{get}!polylru::LRU$<$ Key, Value $>$@{polylru::LRU$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename Key , typename Value $>$ \\
+Value \mbox{\hyperlink{classpolylru_1_1LRU}{polylru\+::\+LRU}}$<$ Key, Value $>$\+::get (\begin{DoxyParamCaption}\item[{Key}]{key }\end{DoxyParamCaption})}
+
+
+
+Возвращает значение, установленное для указанного ключа. 
+
+В случае, если элемент с указанным ключом присутствует в кэше, возвращает значение элемента. Попытка доступа по неизвестному ключу влечёт неопределенное поведение. \mbox{\Hypertarget{classpolylru_1_1LRU_adf74956e314cf45970cdcd6e7e6ed369}\label{classpolylru_1_1LRU_adf74956e314cf45970cdcd6e7e6ed369}} 
+\index{polylru::LRU$<$ Key, Value $>$@{polylru::LRU$<$ Key, Value $>$}!resize@{resize}}
+\index{resize@{resize}!polylru::LRU$<$ Key, Value $>$@{polylru::LRU$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily template$<$typename Key , typename Value $>$ \\
+void \mbox{\hyperlink{classpolylru_1_1LRU}{polylru\+::\+LRU}}$<$ Key, Value $>$\+::resize (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{new\+\_\+cap }\end{DoxyParamCaption})}
+
+
+
+Изменяет ёмкость кэша. 
+
+Метод уменьшает размер кэша в случае, если переданный размер меньше текущего, при этом происходит удаление самых старых элементов. В случае, если переданный размер больше текущего, кэш увеличивается до указанного размера. Если переданный размер равен текущему, изменений не происходит. \mbox{\Hypertarget{classpolylru_1_1LRU_aef41a485a7fabaed42f1bd3819529d43}\label{classpolylru_1_1LRU_aef41a485a7fabaed42f1bd3819529d43}} 
+\index{polylru::LRU$<$ Key, Value $>$@{polylru::LRU$<$ Key, Value $>$}!set@{set}}
+\index{set@{set}!polylru::LRU$<$ Key, Value $>$@{polylru::LRU$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$typename Key , typename Value $>$ \\
+void \mbox{\hyperlink{classpolylru_1_1LRU}{polylru\+::\+LRU}}$<$ Key, Value $>$\+::set (\begin{DoxyParamCaption}\item[{Key}]{key,  }\item[{Value}]{value }\end{DoxyParamCaption})}
+
+
+
+Устанавлияет в кэше значение с указанным ключом. 
+
+В случае, если элемент с указанным ключом сохранён в кэше, устанавливает новое значение для данного ключа. В случае, если элемент с указанным ключом отсутствует в кэше, добавляет элемент в кэш. Добавление элемента в заполненный кэш приводит к вытеснению самого старого элемента. \mbox{\Hypertarget{classpolylru_1_1LRU_ad5f99519f5533136ffb63245832bae15}\label{classpolylru_1_1LRU_ad5f99519f5533136ffb63245832bae15}} 
+\index{polylru::LRU$<$ Key, Value $>$@{polylru::LRU$<$ Key, Value $>$}!size@{size}}
+\index{size@{size}!polylru::LRU$<$ Key, Value $>$@{polylru::LRU$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename Key , typename Value $>$ \\
+size\+\_\+t \mbox{\hyperlink{classpolylru_1_1LRU}{polylru\+::\+LRU}}$<$ Key, Value $>$\+::size\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Возвращает текущее количество элементов в кэше. 
+
+В случае, если размер кэша равен его ёмкости, добавление элемента с новым ключом привёдет к вытеснению самого старого элемента. 
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+lib/src/lru/lru.\+hpp\end{DoxyCompactItemize}

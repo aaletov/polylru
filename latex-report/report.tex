@@ -1,8 +1,55 @@
-\include{settings}
+\documentclass[a4paper,12pt]{extarticle}
+\usepackage{./doxy/latex/tabu_doxygen}
+\usepackage{./doxy/latex/longtable_doxygen}
+\usepackage{./doxy/latex/doxygen}
+\usepackage{polyrep}
+
+% \makeatletter
+% \let \@odoxysection \doxysection
+% \let \@odoxysubsection \doxysubsection
+% \let \@odoxysubsubsection \doxysubsubsection
+% \let \@odoxyparagraph \doxyparagraph
+% \makeatother
+
+% \makeatletter
+% \renewcommand{\doxysection}{\@ifstar{\@sdoxysection}{\@doxysection}}
+% \newcommand{\@sdoxysection}[1]{\@odoxysubsection*{#1}}
+% \newcommand{\@doxysection}[1]{\@odoxysubsection{#1}}
+% \makeatother
+
+% \makeatletter
+% \renewcommand{\doxysubsection}{\@ifstar{\@sdoxysubsection}{\@doxysubsection}}
+% \newcommand{\@sdoxysubsection}[1]{\@odoxysubsubsection*{#1}}
+% \newcommand{\@doxysubsection}[1]{\@odoxysubsubsection*{#1}}
+% \makeatother
+
+% \makeatletter
+% \renewcommand{\doxysubsubsection}{\@ifstar{\@sdoxysubsubsection}{\@doxysubsubsection}}
+% \newcommand{\@sdoxysubsubsection}[1]{\@odoxyparagraph{#1}}
+% \newcommand{\@doxysubsubsection}[1]{\@odoxyparagraph{#1}}
+% \makeatother
+
+\makeatletter
+\renewcommand{\doxysection}{\@ifstar{\@sdoxysection}{\@doxysection}}
+\newcommand{\@sdoxysection}[1]{\subsubsection{#1}}
+\newcommand{\@doxysection}[1]{\subsubsection{#1}}
+\makeatother
+
+\makeatletter
+\renewcommand{\doxysubsection}{\@ifstar{\@sdoxysubsection}{\@doxysubsection}}
+\newcommand{\@sdoxysubsection}[1]{\paragraph{#1}}
+\newcommand{\@doxysubsection}[1]{\paragraph{#1}}
+\makeatother
+
+\makeatletter
+\renewcommand{\doxysubsubsection}{\@ifstar{\@sdoxysubsubsection}{\@doxysubsubsection}}
+\newcommand{\@sdoxysubsubsection}[1]{\subparagraph{#1}}
+\newcommand{\@doxysubsubsection}[1]{\subparagraph{#1}}
+\makeatother
+
 \addbibresource{refs.bib}
 
 \begin{document}	% начало документа
-
 % Титульная страница
 \include{titlepage}
 
@@ -10,12 +57,33 @@
 \tableofcontents
 
 \newpage
-\section{Формулировка задачи}
+\section{Введение}
+
+Цель работы - разработать многопоточный кэш с методом вытеснения LRU, сравнить
+собственную реализацию с реализациями в библиотеках с открытым исходным кодом.
+
+Для достижения поставленной цели в работе были поставленны следующие задачи:
+
+\begin{enumerate}
+  \item Изучить подходы к реализации LRU кэша
+  \item Разработать спецификацию интерфейса разрабатываемого класса
+  \item Разработать тесты, описывающие поведение разрабатываемого класса
+  \item Реализовать класс кэша
+  \item Сравнить собственную реализацию с реализациями в свободно доступных библиотеках
+\end{enumerate}
 
 \newpage
-\section{Dummy}
+\section{Требования}
 
-\cite{book:2994279}
+\subsection{Спецификация интерфейса}
+
+\input{doxy/latex/classpolylru_1_1LRU.tex}
+
+\subsection{Спецификация поведения}
+
+\input{data/tests.tex}
+
+\nocite{book:2994279}
 
 \newpage
 \printbibliography[heading=bibnumbered]
