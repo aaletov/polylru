@@ -1366,3 +1366,7 @@ TSWLatexianTemp*
 reports/
 *_include.cmake
 *_tests.cmake
+
+.vscode
+
+temp/
