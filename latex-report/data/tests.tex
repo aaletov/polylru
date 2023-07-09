@@ -1,25 +1,20 @@
 \begin{itemize}
-	\item IF the size of cache is 1 AND there is key k1 with value v1 present in cache AND set with k1 v2 is called, THEN v2 overwrites v1
-	\item IF the size of cache is >1 AND there is item k1 v1 in cache AND set with k1 v2 is called, THEN v2 overwrites v1
-	\item IF the value with key k1 was set, THEN get with key k1 returns the samevalue
-	\item IF the constructor is called with positive size, THEN it doesn't throw
-	\item IF the size of cache is 1 AND the value with key k1 is not present incache AND contains is called with key k1, THEN it returns false
-	\item IF x elements stored in cache with capacity y AND resize with z > y is called, THEN all elements are copied to the resized cache AND capacity is changed to z
-	\item IF get with unknown key is called, THEN the behaviour is undefined
-	\item IF x elements stored in cache with capacity y AND resize with z < y is called, THEN y - z oldest elements are eliminated AND z newest elements are copied to the resized cache AND capacity is changed to z
-	\item IF the value with key k1 is not present in cache, THEN contains with key k1 returns false
-	\item IF the value with key k1 is present in cache, THEN contains with key k1 returns true
-	\item IF x elements with different keys were set AND x > capacity AND size is called, THEN it returns capacity
-	\item IF the size of cache is >1 AND there is no free space in cache AND k1 is not present in cache AND set k1 v1 is called, THEN new item displaces the least recently used item
-	\item IF the size of cache is 1 AND there is no more free space in cache AND set is called with new key THEN it displaces least recently used item
-	\item IF x elements with different keys were set AND x <= capacity AND size is called, THEN it returns x
-	\item IF the constructor is called with negative size, THEN it throws std::length\_error
-	\item IF the value with key k1 was set, THEN get with key k1 returns the samevalue
-	\item IF the size of cache is 1 AND the value with key k1 was set AND get is called with key k1, THEN it returns the same value
-	\item IF the size of cache is 1 AND the value with key k1 is present in cache AND contains is called with key k1 THEN it returns true
-	\item IF the value with key k1 was set, THEN contains with key k1 returns true
-	\item IF the size of cache is >1 AND there is free space in cache AND set with new key is called, THEN it stores item in cache
-	\item IF the cache was constructed with capacity x AND capacity is called, THEN it returns x
-	\item IF the constructor is called with size 0, THEN it throws std::length\_error
+	\item ЕСЛИ конструктор вызывается с отрицательным параметром size, ТО выбрасывается исключение std::length\_error
+	\item ЕСЛИ конструктор вызывается с параметром size равным 0, ТО выбрасывается исключение std::length\_error
+	\item ЕСЛИ конструктор вызывается с положительным параметром size, ТО создаётся новый объект
+	\item ЕСЛИ ёмкость кэша равна 1 И элемент с ключом k1 не присутствует в кэше И метод contains вызывается с ключом k1, ТО метод возвращает false
+	\item ЕСЛИ ёмкость кэша равна 1 И элемент с ключом k1 присутствует в кэше И метод contains вызывается с ключом k1 ТО метод возвращает TRUE
+	\item ЕСЛИ метод get вызывается с неизвестным ключом, ТО поведение не определено
+	\item ЕСЛИ ёмкость кэша равна 1 И элемент с ключом k1 и значением v1 присутствует в кэше И метод get вызывается с ключом k1, ТО метод возвращает v1
+	\item ЕСЛИ ёмкость кэша равна 1 И кэш заполнен И метод set вызывается с новым ключом ТО из кэша вытесняется самый старый элемент
+	\item ЕСЛИ ёмкость кэша равна 1 И в кэше присутствует элемент с ключом k1 и значением v1 И вызывается метод set с ключом k1 и значением v2, ТО v2 перезаписывает v1
+	\item ЕСЛИ ёмкость кэша >1 И кэш не заполнен И вызывается метод set с новым ключом, ТО элемент сохраняется в кэше
+	\item ЕСЛИ ёмкость кэша >1 И в кэше присутствует элемент с ключом k1 и значением v1 И вызывается метод set с ключом k1 и значением v2, ТО v2 перезаписывает v1
+	\item ЕСЛИ ёмкость кэша >1 И кэш заполнен И элемент с ключом k1 не присутсвует в кэше И вызывается метод set с ключом k1 и значением v1, ТО новый элемент вымещает самый старый элемент
+	\item ЕСЛИ объект был инициализирован с параметром capacity равном x И вызывается метод capacity, ТО метод возвращает x
+	\item ЕСЛИ в кэш было добавлено n элементов с разными ключами И n <= capacity И вызывается метод size, ТО метод возвращает n
+	\item ЕСЛИ в кэш было добавлено n элементов с разными ключами И n > capacity ИИ вызывается метод size, ТО метод возвращает значение, равное capacity
+	\item ЕСЛИ x элементов находится в кэше с ёмкостью y И вызывается метод resize с параметром z > y, ТО все элементы копируются в кэш с новым размером И значение capacity меняется на z
+	\item ЕСЛИ x элементов находится в кэше с ёмкостью y И вызывается метод resize с параметром z < y, ТО y - z старших элементов вымещаются И z младших элементов копируются в кэш с новым размером И значение capacity меняется на z
 \end{itemize}
 

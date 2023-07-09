@@ -2,17 +2,23 @@ import os
 import sys
 import getopt
 import xml.etree.ElementTree as ET
-from typing import List
+import datetime as dt
+from typing import List, Tuple
 
-def get_description(filename: str) -> str:
+def parse_xml(filename: str) -> Tuple[dt.datetime, str]:
     tree = ET.parse(filename)
     descs = []
+    tss = []
     for elem in tree.iter():
         if (elem.tag == "property") and (elem.attrib["name"] =="description"):
             descs.append(elem.attrib["value"])
-    if len(descs) != 1:
-        raise RuntimeError("More than 1 description found")
-    return descs[0]
+        if (elem.tag == "testcase"):
+            sts = elem.attrib["timestamp"]
+            tts = dt.datetime.fromisoformat(sts)
+            tss.append(tts)
+    if not((len(descs) == 1) and (len(tss) == 1)):
+        raise RuntimeError("More than 1 description and tss found")
+    return (tss[0], descs[0])
 
 def itemize(values: List[str]) -> str:
     block = r"\begin{itemize}"
@@ -41,16 +47,18 @@ def main(argv):
     print("Input file is", input_dir)
     print("Output file is", output_dir)
 
-    descs = []
+    items = []
     for filename in os.listdir(input_dir):
         f = os.path.join(input_dir, filename)
         if os.path.isfile(f):
             if os.path.splitext(f)[1] != ".xml":
                 continue
-            desc = get_description(f)
+            ts, desc = parse_xml(f)
             desc = desc.replace("_", r"\_")
-            descs.append(desc)
+            items.append((ts, desc))
 
+    items.sort(key=lambda item: item[0])
+    descs = list([item[1] for item in items])
     latex = itemize(descs)
     with open(os.path.join(output_dir, "tests.tex"), "w") as f:
         print(latex, file=f)
