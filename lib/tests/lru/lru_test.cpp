@@ -25,31 +25,32 @@ void init_lru(polylru::LRU<Key, Value>& lru, std::vector<std::pair<Key, Value>> 
 
 TEST(LRUTest, NegativeSizeErrors) {
   TEST_DESCRIPTION(
-    "IF the constructor is called with negative size, THEN it throws "
-    "std::length_error"
+    "ЕСЛИ конструктор вызывается с отрицательным параметром size, ТО "
+    "выбрасывается исключение std::length_error"
   );
   ASSERT_THROW(DefaultLRU(-1), std::length_error);
 }
 
 TEST(LRUTest, ZeroSizeErrors) {
   TEST_DESCRIPTION(
-    "IF the constructor is called with size 0, THEN it throws "
-    "std::length_error"
+    "ЕСЛИ конструктор вызывается с параметром size равным 0, ТО выбрасывается "
+    "исключение std::length_error"
   );
   ASSERT_THROW(DefaultLRU(0), std::length_error);
 }
 
 TEST(LRUTest, PositiveSizeOK) {
   TEST_DESCRIPTION(
-    "IF the constructor is called with positive size, THEN it doesn't throw"
+    "ЕСЛИ конструктор вызывается с положительным параметром size, ТО "
+    "создаётся новый объект"
   );
   ASSERT_NO_THROW(DefaultLRU(1));
 }
 
 TEST(LRUTest, SingleElementContainsNonExistingFalse) {
   TEST_DESCRIPTION(
-    "IF the size of cache is 1 AND the value with key k1 is not present in"
-    "cache AND contains is called with key k1, THEN it returns false"
+    "ЕСЛИ ёмкость кэша равна 1 И элемент с ключом k1 не присутствует в кэше И "
+    "метод contains вызывается с ключом k1, ТО метод возвращает false"
   );
   DefaultLRU lru = DefaultLRU(1);
   std::pair<std::string, int> item = get_default_item();
@@ -59,8 +60,8 @@ TEST(LRUTest, SingleElementContainsNonExistingFalse) {
 
 TEST(LRUTest, SingleElementContainsExistingTrue) {
   TEST_DESCRIPTION(
-    "IF the size of cache is 1 AND the value with key k1 is present in cache "
-    "AND contains is called with key k1 THEN it returns true"
+    "ЕСЛИ ёмкость кэша равна 1 И элемент с ключом k1 присутствует в кэше И "
+    "метод contains вызывается с ключом k1 ТО метод возвращает TRUE"
   );
   DefaultLRU lru = DefaultLRU(1);
   std::pair<std::string, int> item = get_default_item();
@@ -70,14 +71,16 @@ TEST(LRUTest, SingleElementContainsExistingTrue) {
 
 TEST(LRUTest, UnknownKeyUB) {
   TEST_DESCRIPTION(
-    "IF get with unknown key is called, THEN the behaviour is undefined"
+    "ЕСЛИ метод get вызывается с неизвестным ключом, ТО поведение не "
+    "определено"
   );
 }
 
 TEST(LRUTest, SingleElementSetOK) {
   TEST_DESCRIPTION(
-    "IF the size of cache is 1 AND the value with key k1 was set AND get is "
-    "called with key k1, THEN it returns the same value"
+    "ЕСЛИ ёмкость кэша равна 1 И элемент с ключом k1 и значением v1 "
+    "присутствует в кэше И метод get вызывается с ключом k1, ТО метод "
+    "возвращает v1"
   );
   DefaultLRU lru = DefaultLRU(1);
   std::pair<std::string, int> item = get_default_item();
@@ -87,8 +90,8 @@ TEST(LRUTest, SingleElementSetOK) {
 
 TEST(LRUTest, SingleElementDisplaceOneOK) {
   TEST_DESCRIPTION(
-    "IF the size of cache is 1 AND there is no more free space in cache AND "
-    "set is called with new key THEN it displaces least recently used item"
+    "ЕСЛИ ёмкость кэша равна 1 И кэш заполнен И метод set вызывается с новым "
+    "ключом ТО из кэша вытесняется самый старый элемент"
   );
   DefaultLRU lru = DefaultLRU(1);
   std::pair<std::string, int> item = get_default_item();
@@ -103,8 +106,9 @@ TEST(LRUTest, SingleElementDisplaceOneOK) {
 
 TEST(LRUTest, SingleElementOverwriteOneOK) {
   TEST_DESCRIPTION(
-    "IF the size of cache is 1 AND there is key k1 with value v1 present in "
-    "cache AND set with k1 v2 is called, THEN v2 overwrites v1"
+    "ЕСЛИ ёмкость кэша равна 1 И в кэше присутствует элемент с ключом k1 и "
+    "значением v1 И вызывается метод set с ключом k1 и значением v2, ТО v2 "
+    "перезаписывает v1"
   );
   DefaultLRU lru = DefaultLRU(1);
   std::pair<std::string, int> item = get_default_item();
@@ -119,8 +123,8 @@ TEST(LRUTest, SingleElementOverwriteOneOK) {
 
 TEST(LRUTest, MultiElementFreeSetOK) {
     TEST_DESCRIPTION(
-    "IF the size of cache is >1 AND there is free space in cache AND set with "
-    "new key is called, THEN it stores item in cache"
+    "ЕСЛИ ёмкость кэша >1 И кэш не заполнен И вызывается метод set с новым "
+    "ключом, ТО элемент сохраняется в кэше"
   );
   DefaultLRU lru = DefaultLRU(3);
   std::vector<std::pair<std::string, int>> items = {
@@ -139,8 +143,9 @@ TEST(LRUTest, MultiElementFreeSetOK) {
 
 TEST(LRUTest, MultiElementOverwriteOK) {
     TEST_DESCRIPTION(
-    "IF the size of cache is >1 AND there is item k1 v1 in cache AND set with "
-    "k1 v2 is called, THEN v2 overwrites v1"
+    "ЕСЛИ ёмкость кэша >1 И в кэше присутствует элемент с ключом k1 и "
+    "значением v1 И вызывается метод set с ключом k1 и значением v2, ТО v2 "
+    "перезаписывает v1"
   );
   DefaultLRU lru = DefaultLRU(3);
   std::vector<std::pair<std::string, int>> items = {
@@ -160,9 +165,9 @@ TEST(LRUTest, MultiElementOverwriteOK) {
 
 TEST(LRUTest, MultiElementSetDisplacesLRU) {
   TEST_DESCRIPTION(
-    "IF the size of cache is >1 AND there is no free space in cache AND k1 is "
-    "not present in cache AND set k1 v1 is called, THEN new item displaces "
-    "the least recently used item"
+    "ЕСЛИ ёмкость кэша >1 И кэш заполнен И элемент с ключом k1 не присутсвует "
+    "в кэше И вызывается метод set с ключом k1 и значением v1, ТО новый "
+    "элемент вымещает самый старый элемент"
   );
 
   DefaultLRU lru = DefaultLRU(3);
@@ -194,8 +199,8 @@ TEST(LRUTest, MultiElementSetDisplacesLRU) {
 
 TEST(LRUTest, CapacityOK) {
   TEST_DESCRIPTION(
-    "IF the cache was constructed with capacity x AND capacity is called, THEN "
-    "it returns x"
+    "ЕСЛИ объект был инициализирован с параметром capacity равном x И "
+    "вызывается метод capacity, ТО метод возвращает x"
   );
   DefaultLRU lru = DefaultLRU(3);
   ASSERT_EQ(lru.capacity(), 3);
@@ -203,8 +208,8 @@ TEST(LRUTest, CapacityOK) {
 
 TEST(LRUTest, SizeOK) {
   TEST_DESCRIPTION(
-    "IF x elements with different keys were set AND x <= capacity AND size is "
-    "called, THEN it returns x"
+    "ЕСЛИ в кэш было добавлено n элементов с разными ключами И n <= capacity "
+    "И вызывается метод size, ТО метод возвращает n"
   );
   DefaultLRU lru = DefaultLRU(3);
   int size = 0;
@@ -223,8 +228,8 @@ TEST(LRUTest, SizeOK) {
 
 TEST(LRUTest, SizeDisplacementOK) {
   TEST_DESCRIPTION(
-    "IF x elements with different keys were set AND x > capacity AND size is "
-    "called, THEN it returns capacity"
+    "ЕСЛИ в кэш было добавлено n элементов с разными ключами И n > capacity И"
+    "И вызывается метод size, ТО метод возвращает значение, равное capacity"
   );
   DefaultLRU lru = DefaultLRU(3);
   std::vector<std::pair<std::string, int>> items = {
@@ -239,9 +244,9 @@ TEST(LRUTest, SizeDisplacementOK) {
 
 TEST(LRUTest, ResizeExtendOK) {
   TEST_DESCRIPTION(
-    "IF x elements stored in cache with capacity y AND resize with z > y is "
-    "called, THEN all elements are copied to the resized cache AND capacity "
-    "is changed to z"
+    "Если x элементов находится в кэше с ёмкостью y И вызывается метод resize "
+    "с параметром z > y, ТО все элементы копируются в кэш с новым размером И "
+    "значение capacity меняется на z"
   );
   DefaultLRU lru = DefaultLRU(3);
   std::vector<std::pair<std::string, int>> items = {
@@ -265,9 +270,10 @@ TEST(LRUTest, ResizeExtendOK) {
 
 TEST(LRUTest, ResizeShrinkOK) {
   TEST_DESCRIPTION(
-    "IF x elements stored in cache with capacity y AND resize with z < y is "
-    "called, THEN y - z oldest elements are eliminated AND z newest elements "
-    "are copied to the resized cache AND capacity is changed to z"
+    "Если x элементов находится в кэше с ёмкостью y И вызывается метод resize "
+    "с параметром z < y, ТО y - z старших элементов вымещаются И z младших "
+    "элементов копируются в кэш с новым размером И значение capacity меняется "
+    "на z"
   );
   DefaultLRU lru = DefaultLRU(6);
   std::vector<std::pair<std::string, int>> items = {
@@ -290,8 +296,3 @@ TEST(LRUTest, ResizeShrinkOK) {
   }
   ASSERT_EQ(lru.capacity(), 3);
 }
-
-
-
-// TEST(LRUTest, )
-
